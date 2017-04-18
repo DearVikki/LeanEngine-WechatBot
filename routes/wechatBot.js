@@ -11,6 +11,17 @@ var WechatAPI = require('wechat-api');
 var api = new WechatAPI('wx563cd2695406be88',
   '9ac4c54bf56b8891e44077bba628569b');
 
+router.get('/jsconfig', function (req, res) {
+  var param = {
+    debug: true,
+    jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage'],
+    url: 'http://dearvikki.leancloud.cn/index'
+   };
+   api.getJsConfig(param, function (err, result) {
+     res.json(result);
+   });
+});
+
 router.use('/', wechat(config).text(function(message, req, res, next) {
   // message为文本内容
   // FromUserName: 'oPKu7jgOibOA-De4u8J2RuNKpZRw',
