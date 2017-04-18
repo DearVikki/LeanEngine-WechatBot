@@ -12,10 +12,12 @@ var api = new WechatAPI('wx563cd2695406be88',
   '9ac4c54bf56b8891e44077bba628569b');
 
 router.get('/jsconfig', function (req, res) {
+  res.header('Access-Control-Allow-Origin', '*');
+  var url = req.query.url;
   var param = {
     debug: true,
     jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage'],
-    url: 'http://dearvikki.leancloud.cn/index'
+    url: url
    };
    api.getJsConfig(param, function (err, result) {
      res.json(result);
